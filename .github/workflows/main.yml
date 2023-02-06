@@ -5,7 +5,11 @@ on:
   push:
     branches:
      - master
-    
+
+env:
+  AZURE_WEBAPP_NAME: e-shopapp-catalog
+  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+
 # jobs
 jobs:
   publish:
@@ -19,11 +23,21 @@ jobs:
         with:
           dotnet-version: '6.0.x'
       
-      - name: Restore
+      # Steps for Catalog service
+      - name: Catalog Restore
         run: dotnet restore ./src/eShopApp.Catalog/eShopApp.Catalog.sln
         
-      - name: Build
+      - name: Catalog Build
         run: dotnet build ./src/eShopApp.Catalog/eShopApp.Catalog.sln --configuration Release --no-restore
         
-      - name: Publish
-        run: dotnet publish ./src/eShopApp.Catalog/eShopApp.Catalog.sln --configuration Release --no-restore
+      - name: Catalog Publish
+        run: dotnet publish ./src/eShopApp.Catalog/eShopApp.Catalog.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+
+      - name: Catalog Deployment
+        uses: actions/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_CATALOG }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          
+        
