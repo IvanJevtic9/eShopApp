@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.Catalog.App", "eShopApp.Catalog.App\eShopApp.Catalog.App.csproj", "{6B9B3121-6CAC-4EC6-AEAF-8D82E962A9E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Catalog.App", "eShopApp.Catalog.App\eShopApp.Catalog.App.csproj", "{6B9B3121-6CAC-4EC6-AEAF-8D82E962A9E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E1F0A5CB-4DE4-4322-A72B-AD231E1F230E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{AAC31C95-8FC2-40B9-9A87-0491DD7F27B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{B8EBA1C3-E22A-4DC4-B493-D7E89752C54C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.Catalog.Domain", "eShopApp.Catalog.Domain\eShopApp.Catalog.Domain.csproj", "{4E1B898B-2793-4F2D-B77E-3DB0AA0DA8C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +23,18 @@ Global
 		{6B9B3121-6CAC-4EC6-AEAF-8D82E962A9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B9B3121-6CAC-4EC6-AEAF-8D82E962A9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B9B3121-6CAC-4EC6-AEAF-8D82E962A9E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E1B898B-2793-4F2D-B77E-3DB0AA0DA8C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1B898B-2793-4F2D-B77E-3DB0AA0DA8C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1B898B-2793-4F2D-B77E-3DB0AA0DA8C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1B898B-2793-4F2D-B77E-3DB0AA0DA8C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AAC31C95-8FC2-40B9-9A87-0491DD7F27B7} = {E1F0A5CB-4DE4-4322-A72B-AD231E1F230E}
+		{B8EBA1C3-E22A-4DC4-B493-D7E89752C54C} = {E1F0A5CB-4DE4-4322-A72B-AD231E1F230E}
+		{4E1B898B-2793-4F2D-B77E-3DB0AA0DA8C6} = {AAC31C95-8FC2-40B9-9A87-0491DD7F27B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A1BF3A59-A3E0-498B-9020-1A77DB9442A3}
