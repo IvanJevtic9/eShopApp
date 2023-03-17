@@ -13,11 +13,11 @@ builder.Services.AddDatabase(builder.Configuration);
 var app = builder.Build();
 
 // Migrate pending migrations
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    RunMigration(context);
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+//    RunMigration(context);
+//}
 
 // Configure the HTTP request pipeline.
 app.UseExceptionMiddelware();
