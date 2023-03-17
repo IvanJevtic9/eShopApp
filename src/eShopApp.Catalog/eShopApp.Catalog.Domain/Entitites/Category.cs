@@ -1,36 +1,44 @@
-﻿using eShopApp.Catalog.Domain.Abstractions;
+﻿using eShopApp.Catalog.Domain.Errors;
+using eShopApp.Catalog.Domain.Shared;
+using eShopApp.Catalog.Domain.Abstractions;
 
 namespace eShopApp.Catalog.Domain.Entitites
 {
     public sealed class Category : Entity
     {
         public string Name { get; private set; }
+        public string IconUri { get; private set; }
 
-        private Category(Guid id) : base(id)
+        private Category() : base(Guid.NewGuid())
         { }
 
-        internal static Category Create(string name)
+        internal static Result<Category> Create(string name, string iconUri)
         {
-            var category = new Category(Guid.NewGuid());
-
             if (name is null)
             {
-                // validation
+                return new Result<Category>(DomainErrors.CategoryNameValidationError);
             }
 
-            category.Name = name;
+            var category = new Category()
+            {
+                Name = name,
+                IconUri = iconUri
+            };
 
-            return category;
+            return new Result<Category>(category);
         }
 
-        internal void Update(string name)
+        internal void Update(string name, string iconUri)
         {
-            if(name is null)
+            if(name is not null)
             {
-                // validation
+                Name = name;
             }
 
-            Name = name;
+            if(iconUri is not null) 
+            {
+                IconUri = iconUri;
+            }
         }
     }
 }
