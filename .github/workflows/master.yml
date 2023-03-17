@@ -25,13 +25,13 @@ jobs:
       
       # Steps for Catalog service
       - name: Catalog Restore
-        run: dotnet restore ./src/eShopApp.Catalog/eShopApp.Catalog.sln
+        run: dotnet restore ./src/eShopApp.sln
         
       - name: Catalog Build
-        run: dotnet build ./src/eShopApp.Catalog/eShopApp.Catalog.sln --configuration Release --no-restore
+        run: dotnet build ./src/eShopApp.sln --configuration Release --no-restore
         
       - name: Catalog Publish
-        run: dotnet publish ./src/eShopApp.Catalog/eShopApp.Catalog.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+        run: dotnet publish ./src/eShopApp.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
 
       - name: Catalog Deployment
         uses: azure/webapps-deploy@v1
