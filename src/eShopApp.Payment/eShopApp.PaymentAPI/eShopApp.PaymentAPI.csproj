@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\eShopApp.Catalog.Domain\eShopApp.Catalog.Domain.csproj" />
+    <PackageReference Include="eShopApp.Shared" Version="1.0.0" />
   </ItemGroup>
-  
+
 </Project>
