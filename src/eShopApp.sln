@@ -21,23 +21,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Catalog.API", "eSh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Shared", "eShopApp.Shared\eShopApp.Shared\eShopApp.Shared.csproj", "{F735BC80-4054-4517-AD7C-D9B59BE0D6B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.Catalog.Domain", "eShopApp.Catalog\eShopApp.Catalog.Domain\eShopApp.Catalog.Domain.csproj", "{07409C01-57F5-4F40-85B7-1058AF323B87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Catalog.Domain", "eShopApp.Catalog\eShopApp.Catalog.Domain\eShopApp.Catalog.Domain.csproj", "{07409C01-57F5-4F40-85B7-1058AF323B87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.Catalog.Infrastructure", "eShopApp.Catalog\eShopApp.Catalog.Infrastructure\eShopApp.Catalog.Infrastructure.csproj", "{28892C4A-B905-4B6F-97C9-72287FBE342C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Catalog.Infrastructure", "eShopApp.Catalog\eShopApp.Catalog.Infrastructure\eShopApp.Catalog.Infrastructure.csproj", "{28892C4A-B905-4B6F-97C9-72287FBE342C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.Catalog.Apllication", "eShopApp.Catalog\eShopApp.Catalog.Apllication\eShopApp.Catalog.Apllication.csproj", "{5901A740-C7D3-4175-B4CF-56EBF4A98F04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Catalog.Apllication", "eShopApp.Catalog\eShopApp.Catalog.Apllication\eShopApp.Catalog.Apllication.csproj", "{5901A740-C7D3-4175-B4CF-56EBF4A98F04}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Basket.API", "eShopApp.Basket\eShopApp.Basket.API\eShopApp.Basket.API.csproj", "{44DF0E5F-0689-47E0-B920-B61D749B5651}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Catalog.Contract", "eShopApp.Catalog\eShopApp.Catalog.Contract\eShopApp.Catalog.Contract.csproj", "{CD0AAB5F-65FD-4E13-ABB3-146DEA3A8AAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.Basket.Domain", "eShopApp.Basket\eShopApp.Basket.Domain\eShopApp.Basket.Domain.csproj", "{FD0E4B5A-A22F-49ED-AB05-3214DE1A04EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Basket.Domain", "eShopApp.Basket\eShopApp.Basket.Domain\eShopApp.Basket.Domain.csproj", "{FD0E4B5A-A22F-49ED-AB05-3214DE1A04EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.Basket.Infrastructure", "eShopApp.Basket\eShopApp.Basket.Infrastructure\eShopApp.Basket.Infrastructure.csproj", "{65E17F8A-4FA3-40CE-8744-77D792CA5058}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Basket.Infrastructure", "eShopApp.Basket\eShopApp.Basket.Infrastructure\eShopApp.Basket.Infrastructure.csproj", "{65E17F8A-4FA3-40CE-8744-77D792CA5058}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.Basket.Contract", "eShopApp.Basket\eShopApp.Basket.Contract\eShopApp.Basket.Contract.csproj", "{0CF5302E-6A8E-481F-95F8-21A987773994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Basket.Contract", "eShopApp.Basket\eShopApp.Basket.Contract\eShopApp.Basket.Contract.csproj", "{0CF5302E-6A8E-481F-95F8-21A987773994}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.Basket.Application", "eShopApp.Basket\eShopApp.Basket.Application\eShopApp.Basket.Application.csproj", "{C6BA4615-44E5-4C26-92E2-5B25B985BE25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopApp.Basket.Application", "eShopApp.Basket\eShopApp.Basket.Application\eShopApp.Basket.Application.csproj", "{C6BA4615-44E5-4C26-92E2-5B25B985BE25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopApp.MessageBroker", "eShopApp.Shared\eShopApp.MessageBroker\eShopApp.MessageBroker.csproj", "{043C42B1-E343-4EA2-93E2-A6131B68E0D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,10 @@ Global
 		{C6BA4615-44E5-4C26-92E2-5B25B985BE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6BA4615-44E5-4C26-92E2-5B25B985BE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6BA4615-44E5-4C26-92E2-5B25B985BE25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043C42B1-E343-4EA2-93E2-A6131B68E0D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043C42B1-E343-4EA2-93E2-A6131B68E0D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043C42B1-E343-4EA2-93E2-A6131B68E0D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043C42B1-E343-4EA2-93E2-A6131B68E0D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +125,7 @@ Global
 		{65E17F8A-4FA3-40CE-8744-77D792CA5058} = {1073A054-359A-4D7A-BDA4-9C8C42FE034D}
 		{0CF5302E-6A8E-481F-95F8-21A987773994} = {1073A054-359A-4D7A-BDA4-9C8C42FE034D}
 		{C6BA4615-44E5-4C26-92E2-5B25B985BE25} = {1073A054-359A-4D7A-BDA4-9C8C42FE034D}
+		{043C42B1-E343-4EA2-93E2-A6131B68E0D5} = {DEDB4E5C-8AA9-433E-B36D-25D6E8097072}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BECD4E6-C7F1-4A81-8AA7-E9BD092C6F34}

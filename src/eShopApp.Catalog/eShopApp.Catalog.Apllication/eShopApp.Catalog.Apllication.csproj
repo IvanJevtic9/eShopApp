@@ -6,15 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\eShopApp.Catalog.Contract\eShopApp.Catalog.Contract.csproj" />
     <ProjectReference Include="..\eShopApp.Catalog.Infrastructure\eShopApp.Catalog.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\Responses\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Polly" Version="8.1.0" />
   </ItemGroup>
 
 </Project>

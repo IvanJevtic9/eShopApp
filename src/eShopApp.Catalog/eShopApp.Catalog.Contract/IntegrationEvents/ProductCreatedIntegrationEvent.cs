@@ -1,8 +1,11 @@
-﻿namespace eShopApp.Catalog.Contract.IntegrationEvents
+﻿using eShopApp.MessageBroker.Models;
+
+namespace eShopApp.Catalog.Contract.IntegrationEvents
 {
     public sealed record ProductCreatedIntegrationEvent(
         Guid Id,
         Guid ProductId,
         string Name,
-        decimal Price);
+        decimal Price) 
+    : IntegrationEvent(Id);
 }
