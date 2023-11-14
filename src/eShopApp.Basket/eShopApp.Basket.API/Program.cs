@@ -1,10 +1,14 @@
+using Autofac;
 using Serilog;
 using eShopApp.Shared.Extensions;
+using Autofac.Extensions.DependencyInjection;
 using eShopApp.Basket.Infrastructure.DataAccess;
 
-using ConfigurationExtensions = eShopApp.Shared.Extensions.ConfigurationExtensions;
+IConfiguration _configuration = null;
 
+// Configure host
 IHost host = Host.CreateDefaultBuilder(args)
+    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .UseEnvironment(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development")
     .ConfigureAppConfiguration((hostingService, configuration) =>
     {
@@ -15,22 +19,30 @@ IHost host = Host.CreateDefaultBuilder(args)
             .AddJsonFile($"appsettings.{environmentName}.json", optional: true, true)
             .AddEnvironmentVariables();
     })
-    .UseSerilog()
+    .UseSerilog((hostingContext, loggerConfiguration) =>
+    {
+        loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration)
+            .MinimumLevel.Information()
+            .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+            .MinimumLevel.Override("System", Serilog.Events.LogEventLevel.Warning);
+    })
+    .ConfigureContainer<ContainerBuilder>(builder =>
+    {
+        builder.AddSwaggerConfig("EShop Basket API", "v1");
+        builder.RegisterSettings(_configuration);
+        builder.AddDatabase<BasketDbContext>(_configuration);
+    })
     .ConfigureWebHostDefaults(webBuilder =>
     {
         webBuilder.ConfigureServices((hostingContext, services) =>
         {
-            ConfigurationExtensions.ConfigureLogging(hostingContext.Configuration);
-
             services.AddEndpointsApiExplorer();
-            services.RegisterSettings(hostingContext.Configuration);
-            services.AddSwaggerConfig("EShop Basket API", "v1");
-            services.AddDatabase<BasketDbContext>(hostingContext.Configuration);
         });
         
         webBuilder.Configure((hostingContext, app) =>
         {
-            app.ApplicationServices.RunMigration<BasketDbContext>();
+            var lifetimeScope = app.ApplicationServices.GetRequiredService<ILifetimeScope>();
+            lifetimeScope.RunMigration<BasketDbContext>();
 
             if (hostingContext.HostingEnvironment.IsDevelopment())
             {

@@ -1,4 +1,5 @@
-﻿using eShopApp.Shared.Settings;
+﻿using Autofac;
+using eShopApp.Shared.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,13 +16,13 @@ namespace eShopApp.Shared.Extensions
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection RegisterSettings(this IServiceCollection services, IConfiguration configuration)
+        public static ContainerBuilder RegisterSettings(this ContainerBuilder builder, IConfiguration configuration)
         {
             var connectionStrings = configuration.BindSection<ConnectionStrings>();
 
-            services.AddSingleton(connectionStrings);
+            builder.RegisterInstance(connectionStrings).SingleInstance();
 
-            return services;
+            return builder;
         }
 
         /// <summary>

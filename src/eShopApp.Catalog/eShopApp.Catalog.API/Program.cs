@@ -1,34 +1,46 @@
 using Serilog;
+using Autofac;
 using eShopApp.Shared.Extensions;
 using eShopApp.Catalog.Apllication.IoT;
 using eShopApp.Catalog.Infrastructure.IoT;
+using Autofac.Extensions.DependencyInjection;
 using eShopApp.Catalog.Infrastructure.DataAccess;
 
-using ConfigurationExtensions = eShopApp.Shared.Extensions.ConfigurationExtensions;
+IConfiguration _configuration = null;
 
 // Configure host
 IHost host = Host.CreateDefaultBuilder(args)
+    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .UseEnvironment(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development")
-    .ConfigureAppConfiguration((hostingService, configuration) =>
+    .ConfigureAppConfiguration((hostingService, configurationBuilder) =>
     {
         var environmentName = hostingService.HostingEnvironment.EnvironmentName;
 
-        configuration
+        configurationBuilder
             .AddJsonFile("appsettings.json")
             .AddJsonFile($"appsettings.{environmentName}.json", optional: true, true)
             .AddEnvironmentVariables();
+
+        _configuration = configurationBuilder.Build();
     })
-    .UseSerilog()
+    .UseSerilog((hostingContext, loggerConfiguration) =>
+    {
+        loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration)
+            .MinimumLevel.Information()
+            .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+            .MinimumLevel.Override("System", Serilog.Events.LogEventLevel.Warning);
+    })
+    .ConfigureContainer<ContainerBuilder>(builder =>
+    {
+        builder.AddSwaggerConfig("EShop Catalog API", "v1");
+        builder.RegisterSettings(_configuration);
+        builder.AddDatabase<CatalogDbContext>(_configuration);
+    })
     .ConfigureWebHostDefaults(webBuilder =>
     {
         webBuilder.ConfigureServices((hostingContext, services) =>
         {
-            ConfigurationExtensions.ConfigureLogging(hostingContext.Configuration);
-
             services.AddEndpointsApiExplorer();
-            services.RegisterSettings(hostingContext.Configuration);
-            services.AddSwaggerConfig("EShop Catalog API", "v1");
-            services.AddDatabase<CatalogDbContext>(hostingContext.Configuration);
             services.RegisterHostedServices();
             services.RegisterMediator();
             services.RegisterRepository();
@@ -36,13 +48,12 @@ IHost host = Host.CreateDefaultBuilder(args)
 
         webBuilder.Configure((hostingContext, app) =>
         {
-            app.ApplicationServices.RunMigration<CatalogDbContext>();
+            var lifetimeScope = app.ApplicationServices.GetRequiredService<ILifetimeScope>();
+            lifetimeScope.RunMigration<CatalogDbContext>();
 
-            //if (hostingContext.HostingEnvironment.IsDevelopment())
-            //{
+            // Only for development
             app.UseSwagger();
             app.UseSwaggerUI();
-            //}
 
             app.UseHttpsRedirection();
             app.UseSerilogRequestLogging();

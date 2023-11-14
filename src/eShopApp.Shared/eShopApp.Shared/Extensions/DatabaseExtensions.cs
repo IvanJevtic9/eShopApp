@@ -1,7 +1,7 @@
-﻿using eShopApp.Shared.Settings;
+﻿using Autofac;
+using eShopApp.Shared.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace eShopApp.Shared.Extensions
@@ -15,37 +15,45 @@ namespace eShopApp.Shared.Extensions
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="services"></param>
+        /// <param name="builder"></param>
         /// <param name="configuration"></param>
         /// <param name="interceptors"></param>
         /// <returns></returns>
-        public static IServiceCollection AddDatabase<T>(
-            this IServiceCollection services,
+        public static ContainerBuilder AddDatabase<T>(
+            this ContainerBuilder builder,
             IConfiguration configuration,
-            params IInterceptor[] interceptors)
-            where T : DbContext
+            params IInterceptor[] interceptors) where T : DbContext
         {
-            var connectionString = configuration.BindSection<ConnectionStrings>().DatabaseConnection;
+            var connectionString = configuration
+                .BindSection<ConnectionStrings>()
+                .DatabaseConnection;
 
-            services.AddDbContext<T>(options =>
+            // Register the DbContext
+            builder.Register(container =>
             {
-                options.UseSqlServer(connectionString)
-                    .AddInterceptors(interceptors);
-            });
+                var optionsBuilder = new DbContextOptionsBuilder<T>();
+                optionsBuilder.UseSqlServer(connectionString)
+                              .AddInterceptors(interceptors);
 
-            return services;
+                return (T)Activator.CreateInstance(typeof(T), optionsBuilder.Options);
+            })
+            .AsSelf()
+            .InstancePerLifetimeScope();
+
+            return builder;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="serviceProvider"></param>
-        public static void RunMigration<T>(this IServiceProvider serviceProvider) 
+        /// <typeparam name="T"></typeparam>
+        /// <param name="autofac"></param>
+        public static void RunMigration<T>(this ILifetimeScope autofac) 
             where T : DbContext
         {
-            using var scope = serviceProvider.CreateScope();
+            using var scope = autofac.BeginLifetimeScope();
+            var context = scope.Resolve<T>();
 
-            var context = scope.ServiceProvider.GetRequiredService<T>();
             var pendingMigrations = context.Database.GetPendingMigrations();
             if (pendingMigrations.Any())
             {

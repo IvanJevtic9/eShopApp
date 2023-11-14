@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="eShopApp.Shared" Version="1.0.3" />
+    <PackageReference Include="eShopApp.Shared" Version="1.0.9" />
   </ItemGroup>
 
 </Project>
