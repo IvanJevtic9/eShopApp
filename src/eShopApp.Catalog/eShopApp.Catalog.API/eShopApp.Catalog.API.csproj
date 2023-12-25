@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\eShopApp.Catalog.Apllication\eShopApp.Catalog.Apllication.csproj" />
+    <ProjectReference Include="..\eShopApp.Catalog.Application\eShopApp.Catalog.Application.csproj" />
   </ItemGroup>
 
 </Project>

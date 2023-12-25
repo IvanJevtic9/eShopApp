@@ -5,7 +5,7 @@ using eShopApp.Catalog.Domain.Entities;
 using eShopApp.MessageBroker.EventBus.Base;
 using eShopApp.Catalog.Infrastructure.DataAccess.Base;
 
-namespace eShopApp.Catalog.Apllication.Implementation.NotificationHandlers
+namespace eShopApp.Catalog.Application.Implementation.NotificationHandlers
 {
     public sealed class ProductUpdatedDomainHandler : INotificationHandler<ProductUpdatedDomainEvent>
     {

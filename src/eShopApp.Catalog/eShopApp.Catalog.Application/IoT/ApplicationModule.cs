@@ -1,7 +1,7 @@
-﻿using eShopApp.Catalog.Apllication.HostedServices;
+﻿using eShopApp.Catalog.Application.HostedServices;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace eShopApp.Catalog.Apllication.IoT
+namespace eShopApp.Catalog.Application.IoT
 {
     public static class ApplicationModule
     {

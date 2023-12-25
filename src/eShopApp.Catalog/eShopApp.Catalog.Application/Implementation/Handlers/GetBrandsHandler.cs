@@ -4,7 +4,7 @@ using eShopApp.Catalog.Domain.Entities;
 using eShopApp.Catalog.Apllication.Implementation.Queries;
 using eShopApp.Catalog.Infrastructure.DataAccess.Base;
 
-namespace eShopApp.Catalog.Apllication.Implementation.Handlers
+namespace eShopApp.Catalog.Application.Implementation.Handlers
 {
     public sealed class GetBrandsHandler : IRequestHandler<GetBrandsQuery, Result<List<Brand>>>
     {

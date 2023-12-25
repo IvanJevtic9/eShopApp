@@ -7,9 +7,9 @@ using eShopApp.Catalog.Domain.Entities;
 using eShopApp.Shared.DDAbstraction.Base;
 using eShopApp.Catalog.Infrastructure.DataAccess.Base;
 
-namespace eShopApp.Catalog.Apllication.HostedServices
+namespace eShopApp.Catalog.Application.HostedServices
 {
-    // FIX service descovery
+    // FIX service discovery
     public class OutboxProcessorService : BackgroundService
     {
         private readonly IMediator _mediator;
@@ -69,7 +69,7 @@ namespace eShopApp.Catalog.Apllication.HostedServices
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "An error occured while processing the outbox messages.");
+                    _logger.LogError(ex, "An error occurred while processing the outbox messages.");
                     await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
                 }
             }

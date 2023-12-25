@@ -1,7 +1,7 @@
 using Serilog;
 using Autofac;
 using eShopApp.Shared.Extensions;
-using eShopApp.Catalog.Apllication.IoT;
+using eShopApp.Catalog.Application.IoT;
 using eShopApp.Catalog.Infrastructure.IoT;
 using Autofac.Extensions.DependencyInjection;
 using eShopApp.Catalog.Infrastructure.DataAccess;

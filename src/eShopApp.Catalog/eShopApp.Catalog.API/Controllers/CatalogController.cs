@@ -4,8 +4,8 @@ using eShopApp.Shared.Extensions;
 using eShopApp.Shared.Controller;
 using eShopApp.Catalog.Domain.Entities;
 using eShopApp.Catalog.Application.Models.Requests;
-using eShopApp.Catalog.Apllication.Implementation.Queries;
-using eShopApp.Catalog.Apllication.Implementation.Commands;
+using eShopApp.Catalog.Application.Implementation.Queries;
+using eShopApp.Catalog.Application.Implementation.Commands;
 
 namespace eShopApp.Catalog.API.Controllers
 {

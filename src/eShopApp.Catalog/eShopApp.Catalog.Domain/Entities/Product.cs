@@ -140,7 +140,6 @@ namespace eShopApp.Catalog.Domain.Entities
             }
         }
 
-
         public static Result<Brand> CreateNewBrand(string name)
         {
             Product pr = new();

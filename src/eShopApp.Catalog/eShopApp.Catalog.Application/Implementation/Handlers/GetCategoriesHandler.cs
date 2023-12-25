@@ -4,7 +4,7 @@ using eShopApp.Catalog.Domain.Entities;
 using eShopApp.Catalog.Infrastructure.DataAccess.Base;
 using eShopApp.Catalog.Apllication.Implementation.Queries;
 
-namespace eShopApp.Catalog.Apllication.Implementation.Handlers
+namespace eShopApp.Catalog.Application.Implementation.Handlers
 {
     public sealed class GetCategoriesHandler : IRequestHandler<GetCategoriesQuery, Result<List<Category>>>
     {

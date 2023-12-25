@@ -6,7 +6,7 @@ using eShopApp.Catalog.Contract.IntegrationEvents;
 using eShopApp.Catalog.Infrastructure.DataAccess.Base;
 using eShopApp.Catalog.Domain.Entities;
 
-namespace eShopApp.Catalog.Apllication.Implementation.NotificationHandlers
+namespace eShopApp.Catalog.Application.Implementation.NotificationHandlers
 {
     public sealed class ProductCreatedDomainHandler : INotificationHandler<ProductCreatedDomainEvent>
     {
